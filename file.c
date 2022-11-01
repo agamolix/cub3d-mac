@@ -31,6 +31,7 @@ void	calc_map(t_map *map, int fd)
 			map->nb_line++;
 		}
 		i++;
+		free(line);
 	}
 	map->coord = malloc((map->nb_col * map->nb_line + 1) * sizeof(t_coord));
 }

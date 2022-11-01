@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/10/11 17:19:36 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/11/01 03:53:04 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include <mlx.h>
+#include "mlx.h"
 #include <stdlib.h>
 #include <math.h>
 #include <fcntl.h>
@@ -62,6 +62,7 @@ typedef struct s_text_n
 	void	*text_ptr;
 	unsigned char	*addr;
 	char 	*path;
+	char	*free_ptr;
 	int	bpp;
 	int	line_len;
 	int	endian;
@@ -75,6 +76,7 @@ typedef struct s_text_s
 	void	*text_ptr;
 	unsigned char	*addr;
 	char 	*path;
+	char	*free_ptr;
 	int	bpp;
 	int	line_len;
 	int	endian;
@@ -88,6 +90,7 @@ typedef struct s_text_w
 	void	*text_ptr;
 	unsigned char	*addr;
 	char 	*path;
+	char	*free_ptr;
 	int	bpp;
 	int	line_len;
 	int	endian;
@@ -101,6 +104,7 @@ typedef struct s_text_e
 	void	*text_ptr;
 	unsigned char	*addr;
 	char 	*path;
+	char	*free_ptr;
 	int	bpp;
 	int	line_len;
 	int	endian;
@@ -204,8 +208,8 @@ int open_file(t_data *data, t_map *map, char *path);
 
 //-----------------parse-------------------
 void parse_cf(char *line, t_data *data);
-void parse_ns(char *line, t_data *data);
-void parse_we(char *line, t_data *data);
+void parse_ns(char *line, t_data *data, char *line_ptr);
+void parse_we(char *line, t_data *data, char *line_ptr);
 void check_errors(t_data *data);
 void parse(int fd, t_data *data);
 
@@ -233,7 +237,7 @@ int exit_clean(t_data *data);
 //-----------------keys-------------------
 void key_up_down(int key, t_data *data, t_player *player);
 void key_left_right(int key, t_data *data, t_player *player);
-void key_arrows_lr(int key, t_player *player);
+void key_arrows_lr(int key, t_player *player, double angle);
 int	key_released(int key, t_data *data);
 int	key_down(int key, t_data *data);
 

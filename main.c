@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/10/11 17:19:47 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/11/01 03:47:59 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,32 @@ int	render(t_data *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
 	data->img.img_ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	data->img.addr = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp, &data->img.line_len, &data->img.endian);
+	data->img.addr = mlx_get_data_addr(data->img.img_ptr, &data->img.bpp,\
+									&data->img.line_len, &data->img.endian);
 	check_rays(&data->img, data, &data->ray, &data->player);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+							data->img.img_ptr, 0, 0);
 	return (0);
+}
+
+int	render_next_frame(t_data *data)
+{
+	static int	copy_mouse_pos = -1;
+	int			mouse_x;	
+	int			y;
+	double		angle;
+
+	mlx_mouse_get_pos(data->win_ptr, &mouse_x, &y);
+	if (copy_mouse_pos == -1)
+		copy_mouse_pos = mouse_x;
+	if (copy_mouse_pos != mouse_x)
+	{
+		angle = ((float)mouse_x - (float)copy_mouse_pos) / 25;
+		key_arrows_lr(124, &data->player, angle);
+		copy_mouse_pos = mouse_x;
+		render(data);
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -57,5 +79,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook(data.win_ptr, &key_released, &data);
 	mlx_hook(data.win_ptr, 2, (1L<<0), &key_down, &data);
 	mlx_hook(data.win_ptr, 17, 0, &exit_clean, &data);
+	mlx_loop_hook(data.mlx_ptr, render_next_frame, &data);
 	mlx_loop(data.mlx_ptr);
 }

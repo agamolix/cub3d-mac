@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/10/11 17:15:19 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/11/01 03:59:56 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int get_color(int r, int g, int b)
+int	get_color(int r, int g, int b)
 {
-	int res = 0;
+	int	res;
 
+	res = 0;
 	res += r;
 	res = res << 8;
 	res += g;
@@ -24,22 +25,24 @@ int get_color(int r, int g, int b)
 	return res;
 }
 
-int get_color_inv(int r, int g, int b)
+int	get_color_inv(int r, int g, int b)
 {
-	int res = 0;
+	int	res;
 
+	res = 0;
 	res += b;
 	res = res << 8;
 	res += g;
 	res = res << 8;
 	res += r;
-	return res;
+	return (res);
 }
 
-char *convert_rgb(char *rgb, char *str, char c)
+char	*convert_rgb(char *rgb, char *str, char c)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (str[0] && str[0] != c)
 	{
 		rgb[i] = str[0];
@@ -50,10 +53,10 @@ char *convert_rgb(char *rgb, char *str, char c)
 	rgb = skip_space(rgb);
 	rgb = skip_end_space(rgb);
 	str++;
-	return(str);
+	return (str);
 }
 
-void calc_rgb(t_data *data, char *str)
+void	calc_rgb(t_data *data, char *str)
 {
 	check_comma(data, str);
 	data->color.r = malloc((str_len(str) + 1) * sizeof(char));
@@ -64,7 +67,7 @@ void calc_rgb(t_data *data, char *str)
 	str = convert_rgb(data->color.b, str, '\n');
 }
 
-void convert_fc(t_color *color, t_color_fc *fc, char c)
+void	convert_fc(t_color *color, t_color_fc *fc, char c)
 {
 	if (c == 'f')
 	{
@@ -85,4 +88,3 @@ void convert_fc(t_color *color, t_color_fc *fc, char c)
 		free(color->b);
 	}
 }
-
