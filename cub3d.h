@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 03:53:04 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/01 05:07:26 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 #include <math.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "gnl.h"
+// #include "gnl.h"
+#include "libft.h"
+#include <unistd.h>
 
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 800
@@ -207,7 +209,7 @@ void verify_intern(t_data *data, t_map *map);
 int open_file(t_data *data, t_map *map, char *path);
 
 //-----------------parse-------------------
-void parse_cf(char *line, t_data *data);
+void parse_cf(char *line, t_data *data, char *line_ptr);
 void parse_ns(char *line, t_data *data, char *line_ptr);
 void parse_we(char *line, t_data *data, char *line_ptr);
 void check_errors(t_data *data);

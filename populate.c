@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 04:12:56 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/01 04:37:48 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void populate_map_cases(t_data *data, char *line, int i, int j)
 	int element;
 
 	element = 0;
+	printf("line: %s\n", line);
 	if (j < str_len(line) && line[j] == '1')
 		element = 1;
 	else if (j < str_len(line) && line[j] == '0')

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 03:53:56 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/01 05:10:11 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int exit_clean(t_data *data)
 	free(data->img.img_ptr);
 	free(data->win_ptr);
 	free(data->mlx_ptr);
-	free(data->text_n.free_ptr);
-	free(data->text_s.free_ptr);
-	free(data->text_w.free_ptr);
-	free(data->text_e.free_ptr);
+	free(data->text_n.path);
+	free(data->text_s.path);
+	free(data->text_w.path);
+	free(data->text_e.path);
 	exit(0);
 }

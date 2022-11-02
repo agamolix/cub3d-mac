@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_global.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/02/03 16:27:03 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/11/01 04:37:21 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int str_len(char *str)
     int len;
 
     len = 0;
-    while (str[len])
+    while (str && str[len])
         len++;
     return len;
 }

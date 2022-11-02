@@ -6,13 +6,13 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 04:03:05 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/01 05:15:29 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void parse_cf(char *line, t_data *data)
+void parse_cf(char *line, t_data *data, char *line_ptr)
 {
 	if (line[0] == 'F' && line[1] == ' ')
 	{
@@ -30,16 +30,17 @@ void parse_cf(char *line, t_data *data)
 		printf("C = %d,%d,%d\n", data->color_fc.cr, data->color_fc.cg, data->color_fc.cb);
 		data->color_fc.cok = 1;
 	}
+	free(line_ptr);
 }
 
 void parse_ns(char *line, t_data *data, char *line_ptr)
 {
-	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ') 
+	if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
 	{
 		line = skip_space(line + 2);
 		line = skip_end_space(line);
-		data->text_n.path = line;
-		data->text_n.free_ptr = line_ptr;
+		data->text_n.path = ft_strdup(line);
+		free(line_ptr);
 		printf("NO = %s\n", data->text_n.path);
 		data->text_n.ok = 1;
 	}
@@ -47,8 +48,8 @@ void parse_ns(char *line, t_data *data, char *line_ptr)
 	{
 		line = skip_space(line + 2);
 		line = skip_end_space(line);
-		data->text_s.path = line;
-		data->text_s.free_ptr = line_ptr;
+		data->text_s.path = ft_strdup(line);
+		free(line_ptr);
 		printf("SO = %s\n", data->text_s.path);
 		data->text_s.ok = 1;
 	}
@@ -60,8 +61,8 @@ void	parse_we(char *line, t_data *data, char *line_ptr)
 	{
 		line = skip_space(line + 2);
 		line = skip_end_space(line);
-		data->text_w.path = line;
-		data->text_w.free_ptr = line_ptr;
+		data->text_w.path = ft_strdup(line);
+		free(line_ptr);
 		printf("WE = %s\n", data->text_w.path);
 		data->text_w.ok += 1;
 	}
@@ -69,8 +70,8 @@ void	parse_we(char *line, t_data *data, char *line_ptr)
 	{
 		line = skip_space(line + 2);
 		line = skip_end_space(line);
-		data->text_e.path = line;
-		data->text_e.free_ptr = line_ptr;
+		data->text_e.path = ft_strdup(line);
+		free(line_ptr);
 		printf("EA = %s\n", data->text_e.path);
 		data->text_e.ok += 1;
 	}
@@ -102,7 +103,7 @@ void parse(int fd, t_data *data)
 	{
 		line = skip_space(line_ptr);
 		if ((line[0] == 'F' && line[1] == ' ') || (line[0] == 'C' && line[1] == ' '))
-			parse_cf(line, data);
+			parse_cf(line, data, line_ptr);
 		else if ((line[0] == 'N' && line[1] == 'O' && line[2] == ' ') \
 			|| (line[0] == 'S' && line[1] == 'O' && line[2] == ' '))
 			parse_ns(line, data, line_ptr);
@@ -119,6 +120,8 @@ void parse(int fd, t_data *data)
 			free(line_ptr);
 			exit_error(data, "ERROR: caractère non autorisé");
 		}
+		else
+			free(line_ptr);
 		i++;
 	}
 	check_errors(data); 

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 03:00:18 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/02 02:41:08 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void key_up_down(int key, t_data *data, t_player *player)
 
 void key_left_right(int key, t_data *data, t_player *player)
 {
-	if (key == 1)
+	if (key == 0)
 	{
 		player->temp_x = (int) (player->x_double - player->dir_y * MOVE_STEP);
 		player->temp_y = (int) (player->y_double + player->dir_x * MOVE_STEP);	
@@ -91,9 +91,9 @@ int	key_released(int key, t_data *data)
 	printf("key: %d\n", key);
 	if (key == 53)
 		exit_clean(data);
-	if (key == 13 || key == 0) 
+	if (key == 13 || key == 1) 
 		key_up_down(key, data, player);
-	if (key == 1 || key == 2)
+	if (key == 0 || key == 2)
 		key_left_right(key, data, player);
 	if (key == 123 || key == 124)
 		key_arrows_lr(key, player, 0);
@@ -106,10 +106,10 @@ int	key_released(int key, t_data *data)
 int	key_down(int key, t_data *data)
 {
 	t_player *player = &data->player;
-
-	if (key == 13 || key == 0) 
+	printf("key: %d\n", key);
+	if (key == 13 || key == 1) 
 		key_up_down(key, data, player);
-	if (key == 1 || key == 2)
+	if (key == 0 || key == 2)
 		key_left_right(key, data, player);
 	if (key == 123 || key == 124)
 		key_arrows_lr(key, player, 0);

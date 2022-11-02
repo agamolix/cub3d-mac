@@ -84,12 +84,18 @@ void verify_intern(t_data *data, t_map *map)
 
 int open_file(t_data *data, t_map *map, char *path)
 {
-	int fd;
-	
+	int	fd;
+
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		exit_error(data, "ERROR: incorrect file .cub");
 	parse(fd, data);
+	// free(data->text_n.free_ptr);
+	// free(data->text_s.free_ptr);
+	// free(data->text_w.free_ptr);
+	// free(data->text_e.free_ptr);
+	// // exit_clean(data);
+	// exit(0);
 	close (fd);
 	fd = open(path, O_RDONLY);
 	calc_map(map, fd);

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 03:47:59 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/01 04:41:36 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	render_next_frame(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-
 	if (argc != 2)
 		exit_start("ERROR: 1 argument (file) required");
 	init(&data, argv[1]);
