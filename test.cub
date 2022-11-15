@@ -5,7 +5,7 @@ SO textures/text2.xpm
  WE textures/text3.xpm      
 
 
-F    30, 247, 41
+F    300, 247, 41
        
 EA textures/text4.xpm   
 
@@ -15,7 +15,7 @@ EA textures/text4.xpm
 C   30, 113, 247
 
 
-111      1111111111111
+111     1111111111111
 101      1110000000001
 1011111111000001000001
 1000000000000000001111
