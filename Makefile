@@ -6,7 +6,7 @@
 #    By: gmillon <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:07:37 by atrilles          #+#    #+#              #
-#    Updated: 2022/11/15 09:52:45 by gmillon          ###   ########.fr        #
+#    Updated: 2022/11/15 10:36:39 by gmillon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ asan: $(OBJ)
 
 %.o: %.c
 # linux	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx -O3 -c $< -o $@
-	$(CC)  -I ./mlx/minilibx_opengl_20191021/ -Imlx -c $< -o $@ $(INC_LFT)
+	$(CC)  -I ./mlx/minilibx_opengl_20191021/ -Imlx -c $< -o $@ -I $(LIBFTHEADERS) 
 	
 .PHONY: clean fclean re test
 
