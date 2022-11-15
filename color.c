@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 03:59:56 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/15 07:18:00 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_color(int r, int g, int b)
 	res += g;
 	res = res << 8;
 	res += b;
-	return res;
+	return (res);
 }
 
 int	get_color_inv(int r, int g, int b)

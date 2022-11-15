@@ -14,14 +14,15 @@
 
 void	calc_map(t_map *map, int fd)
 {
-	char *line;
-	int max_col;
-	int i;
-	
+	char	*line;
+	int		max_col;
+	int		i;
+
 	i = 0;
 	map->nb_line = 0;
 	map->nb_col = 0;
-	while ((line = get_next_line(fd)) != 0)
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (i >= map->start_line)
 		{
@@ -32,14 +33,15 @@ void	calc_map(t_map *map, int fd)
 		}
 		i++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	map->coord = malloc((map->nb_col * map->nb_line + 1) * sizeof(t_coord));
 }
 
-void verify_extern(t_data *data, t_map *map)
+void	verify_extern(t_data *data, t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -59,20 +61,19 @@ void verify_extern(t_data *data, t_map *map)
 	}
 }
 
-void verify_intern(t_data *data, t_map *map)
+void	verify_intern(t_data *data, t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	j = 1;
-
 	while (i < map->nb_line - 1)
 	{
 		while (j < map->nb_col - 1)
 		{
-			if (val_map(map, i, j) == 0 &&
-			(val_map(map, i - 1, j) == 2 || val_map(map, i + 1, j) == 2 ||
+			if (val_map(map, i, j) == 0 && \
+			(val_map(map, i - 1, j) == 2 || val_map(map, i + 1, j) == 2 || \
 			val_map(map, i, j - 1) == 2 || val_map(map, i, j + 1) == 2))
 				exit_error(data, "ERROR: map non fermée");
 			j++;
@@ -82,7 +83,7 @@ void verify_intern(t_data *data, t_map *map)
 	}
 }
 
-int open_file(t_data *data, t_map *map, char *path)
+int	open_file(t_data *data, t_map *map, char *path)
 {
 	int	fd;
 
@@ -90,12 +91,6 @@ int open_file(t_data *data, t_map *map, char *path)
 	if (fd == -1)
 		exit_error(data, "ERROR: incorrect file .cub");
 	parse(fd, data);
-	// free(data->text_n.free_ptr);
-	// free(data->text_s.free_ptr);
-	// free(data->text_w.free_ptr);
-	// free(data->text_e.free_ptr);
-	// // exit_clean(data);
-	// exit(0);
 	close (fd);
 	fd = open(path, O_RDONLY);
 	calc_map(map, fd);
@@ -105,7 +100,9 @@ int open_file(t_data *data, t_map *map, char *path)
 	verify_extern(data, map);
 	verify_intern(data, map);
 	close (fd);
-	data->color_fc.color_c = get_color(data->color_fc.cr, data->color_fc.cg, data->color_fc.cb);
-	data->color_fc.color_f = get_color(data->color_fc.fr, data->color_fc.fg, data->color_fc.fb);
+	data->color_fc.color_c = \
+		get_color(data->color_fc.cr, data->color_fc.cg, data->color_fc.cb);
+	data->color_fc.color_f = \
+		get_color(data->color_fc.fr, data->color_fc.fg, data->color_fc.fb);
 	return (0);
 }

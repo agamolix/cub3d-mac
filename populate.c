@@ -6,46 +6,57 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 04:37:48 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/15 09:58:31 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void populate_case_nswe(t_data *data, char c)
+void	set_player_pos(t_data *data, t_player *p, double ang)
 {
-	data->player.start_pos = 1;	
+	p->dir_x = p->dir_x * cos(ang) - p->dir_y * sin(ang);
+	p->dir_y = p->dir_x0 * sin(ang) + p->dir_y * cos(ang);
+	p->plane_x = p->plane_x * cos(ang) - p->plane_y * sin(ang);
+	p->plane_y = p->plane_x0 * sin(ang) + p->plane_y * cos(ang);
+}
+
+void	populate_case_nswe(t_data *data, char c)
+{
+	data->player.start_pos = 1;
 	data->player.dir_x0 = data->player.dir_x;
 	data->player.plane_x0 = data->player.plane_x;
 	if (c == 'S')
 	{
-		data->player.dir_x = data->player.dir_x * cos(PI) - data->player.dir_y * sin(PI);
-		data->player.dir_y = data->player.dir_x0 * sin(PI) + data->player.dir_y * cos(PI);
-		data->player.plane_x = data->player.plane_x * cos(PI) - data->player.plane_y * sin(PI);
-		data->player.plane_y = data->player.plane_x0 * sin(PI) + data->player.plane_y * cos(PI);
+		// data->player.dir_x = data->player.dir_x * cos(PI) - data->player.dir_y * sin(PI);
+		// data->player.dir_y = data->player.dir_x0 * sin(PI) + data->player.dir_y * cos(PI);
+		// data->player.plane_x = data->player.plane_x * cos(PI) - data->player.plane_y * sin(PI);
+		// data->player.plane_y = data->player.plane_x0 * sin(PI) + data->player.plane_y * cos(PI);
+		set_player_pos(data, &data->player, PI);
 	}	
 	else if (c == 'E')
 	{
-		data->player.dir_x = data->player.dir_x * cos(-1.570796327) - data->player.dir_y * sin(-1.570796327);
-		data->player.dir_y = data->player.dir_x0 * sin(-1.570796327) + data->player.dir_y * cos(-1.570796327);
-		data->player.plane_x = data->player.plane_x * cos(-1.570796327) - data->player.plane_y * sin(-1.570796327);
-		data->player.plane_y = data->player.plane_x0 * sin(-1.570796327) + data->player.plane_y * cos(-1.570796327);
+
+		set_player_pos(data, &data->player, -1.570796327);
+		// data->player.dir_x = data->player.dir_x * cos(-1.570796327) - data->player.dir_y * sin(-1.570796327);
+		// data->player.dir_y = data->player.dir_x0 * sin(-1.570796327) + data->player.dir_y * cos(-1.570796327);
+		// data->player.plane_x = data->player.plane_x * cos(-1.570796327) - data->player.plane_y * sin(-1.570796327);
+		// data->player.plane_y = data->player.plane_x0 * sin(-1.570796327) + data->player.plane_y * cos(-1.570796327);
 	}	
 	else if (c == 'W')
 	{
-		data->player.dir_x = data->player.dir_x * cos(1.570796327) - data->player.dir_y * sin(1.570796327);
-		data->player.dir_y = data->player.dir_x0 * sin(1.570796327) + data->player.dir_y * cos(1.570796327);
-		data->player.plane_x = data->player.plane_x * cos(1.570796327) - data->player.plane_y * sin(1.570796327);
-		data->player.plane_y = data->player.plane_x0 * sin(1.570796327) + data->player.plane_y * cos(1.570796327);
+		set_player_pos(data, &data->player, 1.570796327);
+		// data->player.dir_x = data->player.dir_x * cos(1.570796327) - data->player.dir_y * sin(1.570796327);
+		// data->player.dir_y = data->player.dir_x0 * sin(1.570796327) + data->player.dir_y * cos(1.570796327);
+		// data->player.plane_x = data->player.plane_x * cos(1.570796327) - data->player.plane_y * sin(1.570796327);
+		// data->player.plane_y = data->player.plane_x0 * sin(1.570796327) + data->player.plane_y * cos(1.570796327);
 	}
 }
 
-void populate_map_cases(t_data *data, char *line, int i, int j)
+void	populate_map_cases(t_data *data, char *line, int i, int j)
 {
 	int element;
 
 	element = 0;
-	printf("line: %s\n", line);
 	if (j < str_len(line) && line[j] == '1')
 		element = 1;
 	else if (j < str_len(line) && line[j] == '0')

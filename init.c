@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/02/03 16:27:03 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/11/15 07:35:09 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_ray(t_data *data)
+void	init_ray(t_data *data)
 {
 	data->ray.vert_up = 0;
 	data->ray.vert_down = 0;
@@ -20,7 +20,7 @@ void init_ray(t_data *data)
 	data->ray.col = 0;
 }
 
-void modify_player(t_data *data)
+void	modify_player(t_data *data)
 {
 	data->player.x += 0.5;
 	data->player.y += 0.5;
@@ -30,7 +30,7 @@ void modify_player(t_data *data)
 	data->player.y_double = data->player.y;
 }
 
-void init_player(t_data *data)
+void	init_player(t_data *data)
 {
 	data->player.start_pos = 0;
 	data->player.x = 2.5;
@@ -41,7 +41,7 @@ void init_player(t_data *data)
 	data->player.plane_y = 0.66;
 }
 
-void init_texture_fc(t_data *data)
+void	init_texture_fc(t_data *data)
 {
 	data->text_n.ok = 0;
 	data->text_s.ok = 0;
@@ -51,11 +51,13 @@ void init_texture_fc(t_data *data)
 	data->color_fc.fok = 0;
 }
 
-void init(t_data *data, char *argv)
+void	init(t_data *data, char *argv)
 {
+	char	*path;
+
 	init_player(data);
 	init_texture_fc(data);
-	char *path = argv;
+	path = argv;
 	open_file(data, &data->map, path);
 	modify_player(data);
 	init_ray(data);

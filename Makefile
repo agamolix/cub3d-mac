@@ -6,7 +6,7 @@
 #    By: gmillon <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:07:37 by atrilles          #+#    #+#              #
-#    Updated: 2022/11/01 05:06:20 by gmillon          ###   ########.fr        #
+#    Updated: 2022/11/15 09:52:45 by gmillon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME = cub3D
 
 ######## SOURCE FILES ##########################################################
 
-SRC_FILES =		main gnl_utils   file   utils_global  init  exit   atoi color utils_file distance text_color keys parse populate rays
+SRC_FILES =		main gnl_utils   file   utils_global  init  exit   atoi color utils_file distance text_color keys parse populate rays texture_parse
 # SRC_FILES =		main  gnl		gnl_utils   file   utils_global  init  exit   atoi color utils_file distance text_color keys parse populate rays
 
 #SRC = $(addsuffix .c, $(SRC_FILES))
