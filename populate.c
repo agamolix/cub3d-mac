@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 09:58:31 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/15 10:21:13 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,16 @@ void	populate_case_nswe(t_data *data, char c)
 	data->player.dir_x0 = data->player.dir_x;
 	data->player.plane_x0 = data->player.plane_x;
 	if (c == 'S')
-	{
-		// data->player.dir_x = data->player.dir_x * cos(PI) - data->player.dir_y * sin(PI);
-		// data->player.dir_y = data->player.dir_x0 * sin(PI) + data->player.dir_y * cos(PI);
-		// data->player.plane_x = data->player.plane_x * cos(PI) - data->player.plane_y * sin(PI);
-		// data->player.plane_y = data->player.plane_x0 * sin(PI) + data->player.plane_y * cos(PI);
 		set_player_pos(data, &data->player, PI);
-	}	
 	else if (c == 'E')
-	{
-
 		set_player_pos(data, &data->player, -1.570796327);
-		// data->player.dir_x = data->player.dir_x * cos(-1.570796327) - data->player.dir_y * sin(-1.570796327);
-		// data->player.dir_y = data->player.dir_x0 * sin(-1.570796327) + data->player.dir_y * cos(-1.570796327);
-		// data->player.plane_x = data->player.plane_x * cos(-1.570796327) - data->player.plane_y * sin(-1.570796327);
-		// data->player.plane_y = data->player.plane_x0 * sin(-1.570796327) + data->player.plane_y * cos(-1.570796327);
-	}	
 	else if (c == 'W')
-	{
 		set_player_pos(data, &data->player, 1.570796327);
-		// data->player.dir_x = data->player.dir_x * cos(1.570796327) - data->player.dir_y * sin(1.570796327);
-		// data->player.dir_y = data->player.dir_x0 * sin(1.570796327) + data->player.dir_y * cos(1.570796327);
-		// data->player.plane_x = data->player.plane_x * cos(1.570796327) - data->player.plane_y * sin(1.570796327);
-		// data->player.plane_y = data->player.plane_x0 * sin(1.570796327) + data->player.plane_y * cos(1.570796327);
-	}
 }
 
 void	populate_map_cases(t_data *data, char *line, int i, int j)
 {
-	int element;
+	int	element;
 
 	element = 0;
 	if (j < str_len(line) && line[j] == '1')
@@ -63,7 +44,8 @@ void	populate_map_cases(t_data *data, char *line, int i, int j)
 		element = 0;
 	else if (j < str_len(line) && (line[j] == ' ' || line[j] == '\n'))
 		element = 2;
-	else if (j < str_len(line) && (line[j] == 'N' || line[j] == 'S' || line[j] == 'E' || line[j] == 'W'))
+	else if (j < str_len(line) && (line[j] == 'N' || line[j] == 'S' \
+								|| line[j] == 'E' || line[j] == 'W'))
 	{	
 		element = 0;
 		data->player.x = i;
@@ -81,11 +63,14 @@ void	populate_map_cases(t_data *data, char *line, int i, int j)
 
 void	populate_map(t_data *data, t_map *map, int fd)
 {
-	int i = 0;
-	int j = 0;
-	char *line;
-	int l = 0;
+	int		i;
+	int		j;
+	char	*line;
+	int		l;
 
+	l = 0;
+	j = 0;
+	i = 0;
 	while (i < map->nb_line)
 	{
 		line = get_next_line(fd);

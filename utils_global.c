@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/01 04:37:21 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/15 10:22:22 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,31 @@
 
 void	put_pix_on_img(t_img *img, int x, int y, int color)
 {
-	char    *pix;
+	char	*pix;
 
-    if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
+	if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
 	{
 		pix = img->addr + (y * img->line_len + x * (img->bpp / 8));
 		*(int *)pix = color;
 	}
 }
 
-int str_len(char *str)
+int	str_len(char *str)
 {
-    int len;
+	int	len;
 
-    len = 0;
-    while (str && str[len])
-        len++;
-    return len;
+	len = 0;
+	while (str && str[len])
+		len++;
+	return (len);
 }
 
-int val_map(t_map *map, int i, int j)
+int	val_map(t_map *map, int i, int j)
 {
 	return (map->coord[i * map->nb_col + j].value);
 }
 
-int dval_map(t_data *data, int i, int j)
+int	dval_map(t_data *data, int i, int j)
 {
 	return (data->map.coord[i * data->map.nb_col + j].value);
 }
-

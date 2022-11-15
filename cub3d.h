@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 09:53:48 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/15 10:32:07 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ int				color_n(t_data *data, t_ray *ray, int y);
 int				color_s(t_data *data, t_ray *ray, int y);
 int				color_w(t_data *data, t_ray *ray, int y);
 int				color_e(t_data *data, t_ray *ray, int y);
+int				get_text_color(t_data *data, t_text *text, t_ray *ray, int y);
 
 //-				---------------color-------------------
 int				get_color(int r, int g, int b);

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 07:35:09 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/15 10:15:40 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init(t_data *data, char *argv)
 	char	*path;
 
 	init_player(data);
+	data->map.coord = NULL;
 	init_texture_fc(data);
 	path = argv;
 	open_file(data, &data->map, path);

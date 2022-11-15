@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrilles <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/02/03 16:27:03 by atrilles         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:32:18 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void calc_vertical(t_ray *ray)
+void	calc_vertical(t_ray *ray)
 {
-	int height_wall;
-	int wall_max;
-	int wall_min;
+	int	height_wall;
+	int	wall_max;
+	int	wall_min;
 
 	height_wall = WIN_HEIGHT / ray->distance;
 	wall_max = WIN_HEIGHT / 2 - height_wall / 2;
@@ -25,10 +25,10 @@ void calc_vertical(t_ray *ray)
 	ray->vert_down = wall_min;
 }
 
-void trace(t_img *img, t_data *data, t_ray *ray)
+void	trace(t_img *img, t_data *data, t_ray *ray)
 {
-	int y;
-	int color;
+	int	y;
+	int	color;
 
 	y = 0;
 	while (y < WIN_HEIGHT)
@@ -40,30 +40,30 @@ void trace(t_img *img, t_data *data, t_ray *ray)
 		else
 		{
 			if (ray->dir_nsew == 0)
-				color = color_n(data, ray, y);
+				color = get_text_color(data, &data->text_n, ray, y);
 			else if (ray->dir_nsew == 1)
-				color = color_s(data, ray, y);
+				color = get_text_color(data, &data->text_s, ray, y);
 			else if (ray->dir_nsew == 2)
-				color = color_e(data, ray, y);
+				color = get_text_color(data, &data->text_e, ray, y);
 			else
-				color = color_w(data, ray, y);
+				color = get_text_color(data, &data->text_w, ray, y);
 			put_pix_on_img(img, ray->col, y, color);
 		}
 		y++;
 	}
 }
 
-void check_rays(t_img *img, t_data *data, t_ray *ray, t_player *player)
+void	check_rays(t_img *img, t_data *data, t_ray *ray, t_player *player)
 {
-	double i;
-	
+	double	i;
+
 	i = 0;
 	while (i < WIN_WIDTH)
 	{
 		ray->pos_inside_cam = 2 * i / WIN_WIDTH - 1;
 		ray->dir_x = player->dir_x + player->plane_x * ray->pos_inside_cam;
 		ray->dir_y = player->dir_y + player->plane_y * ray->pos_inside_cam;
-		calc_dist(data, ray, player);	
+		calc_dist(data, ray, player);
 		calc_vertical(ray);
 		trace(img, data, ray);
 		ray->col += 1;

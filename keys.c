@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 07:42:08 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/15 10:21:24 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	key_released(int key, t_data *data)
 	player = &data->player;
 	if (key == 53)
 		exit_clean(data);
-	if (key == 13 || key == 1) 
+	if (key == 13 || key == 1)
 		key_up_down(key, data, player);
 	if (key == 0 || key == 2)
 		key_left_right(key, data, player);
@@ -111,7 +111,7 @@ int	key_down(int key, t_data *data)
 	t_player	*player;
 
 	player = &data->player;
-	if (key == 13 || key == 1) 
+	if (key == 13 || key == 1)
 		key_up_down(key, data, player);
 	if (key == 0 || key == 2)
 		key_left_right(key, data, player);
