@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 07:18:00 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 09:50:33 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	get_color_inv(int r, int g, int b)
 	return (res);
 }
 
-char	*convert_rgb(char *rgb, char *str, char c)
+char	*convert_rgb(t_data *data, char *rgb, char *str, char c)
 {
 	int	i;
 
@@ -53,6 +53,7 @@ char	*convert_rgb(char *rgb, char *str, char c)
 	rgb = skip_space(rgb);
 	rgb = skip_end_space(rgb);
 	str++;
+	check_rgb_error(data, rgb);
 	return (str);
 }
 
@@ -62,12 +63,12 @@ void	calc_rgb(t_data *data, char *str)
 	data->color.r = malloc((str_len(str) + 1) * sizeof(char));
 	data->color.g = malloc((str_len(str) + 1) * sizeof(char));
 	data->color.b = malloc((str_len(str) + 1) * sizeof(char));
-	str = convert_rgb(data->color.r, str, ',');
-	str = convert_rgb(data->color.g, str, ',');
-	str = convert_rgb(data->color.b, str, '\n');
+	str = convert_rgb(data, data->color.r, str, ',');
+	str = convert_rgb(data, data->color.g, str, ',');
+	str = convert_rgb(data, data->color.b, str, '\n');
 }
 
-void	convert_fc(t_color *color, t_color_fc *fc, char c)
+void	convert_fc(t_data *data, t_color *color, t_color_fc *fc, char c)
 {
 	if (c == 'f')
 	{

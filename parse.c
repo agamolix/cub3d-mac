@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 09:52:54 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 09:52:43 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	check_errors(t_data *data)
 {
+	check_fc_err(&data->color_fc, data);
 	if (data->text_n.ok != 1)
 		exit_error(data, "ERROR: texture NO");
 	if (data->text_s.ok != 1)

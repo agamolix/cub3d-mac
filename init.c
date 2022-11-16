@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 10:15:40 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 09:55:58 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	modify_player(t_data *data)
 void	init_player(t_data *data)
 {
 	data->player.start_pos = 0;
-	data->player.x = 2.5;
-	data->player.y = 3.5;
+	data->player.x = 0;
+	data->player.y = 0;
 	data->player.dir_x = -1;
 	data->player.dir_y = 0;
 	data->player.plane_x = 0;

@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 10:32:07 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 09:50:13 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void			parse_cf(char *line, t_data *data, char *line_ptr);
 void			parse_ns(char *line, t_data *data, char *line_ptr);
 void			parse_we(char *line, t_data *data, char *line_ptr);
 void			check_errors(t_data *data);
+void			check_fc_err(t_color_fc *fc, t_data *data);
 void			parse(int fd, t_data *data);
 int				parse_wall_texts(char *line, t_data *data, char *line_ptr);
 
@@ -209,9 +210,12 @@ int				get_text_color(t_data *data, t_text *text, t_ray *ray, int y);
 //-				---------------color-------------------
 int				get_color(int r, int g, int b);
 int				get_color_inv(int r, int g, int b);
-char			*convert_rgb(char *rgb, char *str, char c);
+char			*convert_rgb(t_data *data, char *rgb, char *str, char c);
 void			calc_rgb(t_data *data, char *str);
-void			convert_fc(t_color *color, t_color_fc *fc, char c);
+void			convert_fc(t_data *data, t_color *color, \
+							t_color_fc *fc, char c);
+int				ft_rgb_is_num(char *str);
+void			check_rgb_error(t_data *data, char *str);
 
 //-----------------atoi-------------------
 char			*remove_space(char *str);

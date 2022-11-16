@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 09:51:55 by gmillon           #+#    #+#             */
-/*   Updated: 2022/11/15 09:54:57 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 09:04:25 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	parse_cf(char *line, t_data *data, char *line_ptr)
 	{
 		line = skip_space(line + 1);
 		calc_rgb(data, line);
-		convert_fc(&data->color, &data->color_fc, 'f');
+		convert_fc(data, &data->color, &data->color_fc, 'f');
 		printf("F = %d,%d,%d\n", data->color_fc.fr, \
 				data->color_fc.fg, data->color_fc.fb);
 		data->color_fc.fok = 1;
@@ -27,7 +27,7 @@ void	parse_cf(char *line, t_data *data, char *line_ptr)
 	{
 		line = skip_space(line + 1);
 		calc_rgb(data, line);
-		convert_fc(&data->color, &data->color_fc, 'c');
+		convert_fc(data, &data->color, &data->color_fc, 'c');
 		printf("C = %d,%d,%d\n", data->color_fc.cr, \
 				data->color_fc.cg, data->color_fc.cb);
 		data->color_fc.cok = 1;

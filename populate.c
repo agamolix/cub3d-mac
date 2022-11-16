@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/15 10:21:13 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 10:03:17 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ void	populate_case_nswe(t_data *data, char c)
 		set_player_pos(data, &data->player, 1.570796327);
 }
 
+void	check_and_set_player(t_data *data, int i, int j)
+{
+	if (data->player.x || data->player.y)
+		exit_error(data, "Error: Only one player position allowed");
+	data->player.x = i;
+	data->player.y = j;
+}
+
 void	populate_map_cases(t_data *data, char *line, int i, int j)
 {
 	int	element;
@@ -48,8 +56,7 @@ void	populate_map_cases(t_data *data, char *line, int i, int j)
 								|| line[j] == 'E' || line[j] == 'W'))
 	{	
 		element = 0;
-		data->player.x = i;
-		data->player.y = j;
+		check_and_set_player(data, i, j);
 		populate_case_nswe(data, line[j]);
 	}
 	else if (j >= str_len(line))
