@@ -50,13 +50,13 @@ void	verify_extern(t_data *data, t_map *map)
 	while (j < map->nb_col)
 	{
 		if (val_map(map, 0, j) == 0 || val_map(map, map->nb_line - 1, j) == 0)
-			exit_error(data, "ERROR: map non fermée");
+			exit_error(data, "ERROR: map");
 		j++;
 	}
 	while (i < map->nb_line)
 	{
 		if (val_map(map, i, 0) == 0 || val_map(map, i, map->nb_col - 1) == 0)
-			exit_error(data, "ERROR: map non fermée");
+			exit_error(data, "ERROR: map");
 		i++;
 	}
 }
@@ -75,7 +75,7 @@ void	verify_intern(t_data *data, t_map *map)
 			if (val_map(map, i, j) == 0 && \
 			(val_map(map, i - 1, j) == 2 || val_map(map, i + 1, j) == 2 || \
 			val_map(map, i, j - 1) == 2 || val_map(map, i, j + 1) == 2))
-				exit_error(data, "ERROR: map non fermée");
+				exit_error(data, "ERROR: map");
 			j++;
 		}
 		j = 1;

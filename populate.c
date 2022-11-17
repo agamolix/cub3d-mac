@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   populate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/16 10:03:17 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:49:32 by atrilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	populate_map_cases(t_data *data, char *line, int i, int j)
 	else if (j >= str_len(line))
 		element = 2;
 	else
-		exit_error(data, "ERROR MAP: caractère non autorisé");
+		exit_error(data, "ERROR: map");
 	data->map.coord[(i * data->map.nb_col + j)].line = i;
 	data->map.coord[(i * data->map.nb_col + j)].col = j;
 	data->map.coord[(i * data->map.nb_col + j)].value = element;

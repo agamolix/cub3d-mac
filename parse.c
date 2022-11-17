@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 19:35:18 by atrilles          #+#    #+#             */
-/*   Updated: 2022/11/16 09:52:43 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/11/16 13:47:13 by atrilles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	parse(int fd, t_data *data)
 		else if (line[0] != '\n')
 		{
 			free(line_ptr);
-			exit_error(data, "ERROR: caractère non autorisé");
+			exit_error(data, "ERROR: map");
 		}
 		else
 			free(line_ptr);
