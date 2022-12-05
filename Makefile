@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gmillon <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: atrilles <atrilles@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:07:37 by atrilles          #+#    #+#              #
-#    Updated: 2022/11/16 09:51:08 by gmillon          ###   ########.fr        #
+#    Updated: 2022/12/05 16:15:52 by atrilles         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LDFLAGS =
 all: $(NAME)
 $(LIBFTDIR)/libft.a:
 	# git submodule add --name libft https://github.com/ErwannMillon/libftextended.git ./libftextended
-	git submodule update --remote
+	git submodule update --recursive --init
 	make -C $(LIBFTDIR)
 
 $(NAME): $(LIBFTDIR)/libft.a $(OBJ)
